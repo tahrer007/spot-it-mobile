@@ -1,11 +1,21 @@
 import React from "react";
-import { View, Text ,StyleSheet} from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
 const LogInScreen = () => {
   return (
     <View style={styles.container}>
-      
-      <Text>log in </Text>
+      <Button
+        onPress={()=>console.log("new user")}
+        title="new User"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <Button
+        onPress={()=>console.log("sign already")}
+        title="sign already"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
     </View>
   );
 };
