@@ -1,23 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UserAuthentication from "../routes/navigation/userAuthentication";
+const Stack = createNativeStackNavigator();
 
 const LogInScreen = () => {
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={()=>console.log("new user")}
-        title="new User"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={()=>console.log("sign already")}
-        title="sign already"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-    </View>
+    <Stack.Navigator>
+        <UserAuthentication />
+      </Stack.Navigator>
   );
 };
 
