@@ -12,8 +12,8 @@ const Routes = () => {
   return (
     <Drawer.Navigator initialRouteName="Locations Map">
       <Drawer.Screen name="Locations Map" component={LocationsMap} />
-      <Drawer.Screen name="About" component={AboutScreen} />
       <Drawer.Screen name="red Neighborhoods" component={RedNeighborhoods} />
+      <Drawer.Screen name="About" component={AboutScreen} />
       <Drawer.Screen name="Login" component={LogInScreen} />
     </Drawer.Navigator>
   );
