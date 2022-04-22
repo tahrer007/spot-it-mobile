@@ -11,11 +11,11 @@ const Stack = createNativeStackNavigator();
 
 const UserAuthentication = () => {
   return (
-      <Stack.Navigator  initialRouteName="UserProfile">
-        <Stack.Screen name="UserProfile" component={UserProfile} />
-        <Stack.Screen name="ByGoogle" component={ByGoogle} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="CreateUser" component={CreateUser} />
+      <Stack.Navigator  initialRouteName="UserProfile"   >
+        <Stack.Screen name="UserProfile" component={UserProfile}  options={{ headerShown: false }}/>
+        <Stack.Screen name="ByGoogle" component={ByGoogle} options={{ headerShown: false }} />
+        <Stack.Screen name="SignIn" component={SignIn}  options={{ headerShown: false }} />
+        <Stack.Screen name="CreateUser" component={CreateUser} options={{ headerShown: false }} />
       </Stack.Navigator>
   );
 };
