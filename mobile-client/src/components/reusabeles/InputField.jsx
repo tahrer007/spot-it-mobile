@@ -20,9 +20,11 @@ const InputField = ({placeholder, value, onChangeText, secureTextEntry ,isEditab
           borderColor: "black",
           borderWidth: 1,
           fontSize: 18,
-          height: 40,
           margin:5,
-          paddingLeft:5
+          paddingLeft:5,
+          marginBottom: 20,
+          height: 40,
+          width: 200,
         } 
       });
 

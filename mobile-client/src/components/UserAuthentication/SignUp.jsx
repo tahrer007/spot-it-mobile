@@ -1,10 +1,38 @@
-import React from "react";
+import React  ,{useEffect , useState}from "react";
 import { View, Text ,StyleSheet } from "react-native";
+import ReusableButton from "../reusabeles/Button";
+import InputField from "../reusabeles/InputField"
+ 
 
 const SignUp = () => {
+  const [userName,setUserName]=useState("");
+  const [userEmail,setUserEmail]=useState("");
+  const [userPassword,setUserPassword]=useState("");
+
+  const OnPress = (routeName) => console.log(routeName);
+
   return (
     <View style={styles.container}>
-      <Text> Create new user </Text>
+     <InputField
+        placeholder="user name"
+        secureTextEntry={false}
+        value={userName}
+        onChangeText={(userName) => setUserName(userName)}
+      />
+       <InputField
+        placeholder="email"
+        secureTextEntry={false}
+        value={userEmail}
+        onChangeText={(userEmail) => setUserEmail(userEmail)}
+      />
+       <InputField
+        placeholder="password"
+        secureTextEntry={true}
+        value={userPassword}
+        onChangeText={(userPassword) => setUserPassword(userPassword)}
+      />
+    <ReusableButton onPress={OnPress} title="Sign Up" RouteName={"signup"} />
+
     </View>
   );
 };
