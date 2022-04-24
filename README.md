@@ -1,1 +1,0 @@
-# spot-it-mobile
