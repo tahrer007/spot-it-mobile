@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "chalk": "^5.0.1",
     "nodemon": "^2.0.15"
   }
 }
