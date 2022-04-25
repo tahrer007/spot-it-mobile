@@ -1,6 +1,9 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
+require("dotenv").config();
+require("./dataBase/mongoose");
+
+const app = express();
 
 //routers
 const locationsRouter = require("./routers/locationsRouter");
