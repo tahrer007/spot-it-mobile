@@ -1,7 +1,8 @@
 import React  ,{useEffect , useState}from "react";
 import { View, Text ,StyleSheet } from "react-native";
 import ReusableButton from "../reusabeles/Button";
-import InputField from "../reusabeles/InputField"
+import InputField from "../reusabeles/InputField" ;
+import ToggleButton from "../reusabeles/ToggleButton";
  
 
 const SignUp = () => {
@@ -31,6 +32,8 @@ const SignUp = () => {
         value={userPassword}
         onChangeText={(userPassword) => setUserPassword(userPassword)}
       />
+      <ToggleButton label={"Remmber me"}/>
+      <ToggleButton label={"auto login"}/>
     <ReusableButton onPress={OnPress} title="Sign Up" RouteName={"signup"} />
 
     </View>
