@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "chalk": "^5.0.1",   
-     "concurrently": "^7.1.0",
-
+    "body-parser": "^1.20.0",
+    "chalk": "^5.0.1",
+    "concurrently": "^7.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
@@ -11,10 +11,9 @@
   },
   "scripts": {
     "dev": "nodemon server/server.js",
-  "client": "cd mobile-client && expo start",
-  "start": "concurrently \"npm run dev\" \"npm run client\"",
-  "test": "echo \"Error: no test specified\" && exit 1",
-  
-  "heroku-postbuild": "npm install --prefix client && npm run build-react"
-}
+    "client": "cd mobile-client && expo start",
+    "start": "concurrently \"npm run dev\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm install --prefix client && npm run build-react"
+  }
 }
