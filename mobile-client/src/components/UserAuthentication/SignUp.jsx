@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet ,TouchableOpacity } from "react-native";
 import ReusableButton from "../reusabeles/Button";
 import InputField from "../reusabeles/InputField";
 
@@ -7,8 +7,14 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const OnPress = (routeName) => console.log(routeName);
+
+  const signup=()=>console.log("Test")
+
+  const OnPress = (routeName) => {
+    
+  };
 
   return (
     <View style={styles.container}>
@@ -30,8 +36,15 @@ const SignUp = () => {
         value={userPassword}
         onChangeText={(userPassword) => setUserPassword(userPassword)}
       />
-
+      
       <ReusableButton onPress={OnPress} title="Sign Up" RouteName={"signup"} />
+      <TouchableOpacity OnPress={()=>console.log("next")}>
+      <Text style={styles.linked}>
+        already have an account ? sign in instead
+      </Text>
+
+      </TouchableOpacity>
+      
     </View>
   );
 };
@@ -41,6 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  linked: {
+    textDecorationLine: "underline",
   },
 });
 
