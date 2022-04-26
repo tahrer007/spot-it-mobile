@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
-  userName: {
+  name: {
     type :String ,
     required: [true , "Please provide a user name "],
     default: "guest",
@@ -11,6 +11,7 @@ const usersSchema = new Schema({
   email: {
     type: Number,
     required: [true, "Please provide a email"],
+    unique : true
   },
   password: {
     type: String,
