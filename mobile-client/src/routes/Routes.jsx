@@ -20,6 +20,7 @@ const Routes = () => {
       <Drawer.Screen name="Red Neighborhoods" component={RedNeighborhoods} />
       <Drawer.Screen name="sos" component={SosScreen} />
       <Drawer.Screen name="acount" component={AccountScreen} />
+      <Drawer.Screen name="about" component={AboutScreen} />
      
     </Drawer.Navigator>
   );
