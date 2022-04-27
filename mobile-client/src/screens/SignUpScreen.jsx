@@ -4,7 +4,7 @@ import ReusableButton from "../components/reusabeles/Button";
 import InputField from "../components/reusabeles/InputField";
 import Linked from "../components/reusabeles/Linked";
 
-const SignUpScreen = () => {
+const SignupScreen = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default SignupScreen;
