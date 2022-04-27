@@ -2,11 +2,11 @@ import React from "react";
 import { Button, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const ReusableButton = ({ title, onPress ,RouteName}) => {
+const ReusableButton = ({ title, onPress ,routeName}) => {
   return (
     <TouchableOpacity style={styles.Button}>
       <Button
-        onPress={() => onPress(RouteName)}
+        onPress={() => onPress(routeName)}
         title={title}
         color="#841584"
         accessibilityLabel="Learn more about this purple button"

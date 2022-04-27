@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet ,TouchableOpacity } from "react-native";
-import ReusableButton from "../reusabeles/Button";
-import InputField from "../reusabeles/InputField";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import ReusableButton from "../components/reusabeles/Button";
+import InputField from "../components/reusabeles/InputField";
+import Linked from "../components/reusabeles/Linked";
 
-const SignUp = () => {
+const SignUpScreen = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-
-  const signup=()=>console.log("Test")
-
-  const OnPress = (routeName) => {
-    
-  };
+  const OnPress = (routeName) => {};
 
   return (
     <View style={styles.container}>
@@ -36,15 +32,12 @@ const SignUp = () => {
         value={userPassword}
         onChangeText={(userPassword) => setUserPassword(userPassword)}
       />
-      
-      <ReusableButton onPress={OnPress} title="Sign Up" RouteName={"signup"} />
-      <TouchableOpacity OnPress={()=>console.log("next")}>
-      <Text style={styles.linked}>
-        already have an account ? sign in instead
-      </Text>
 
-      </TouchableOpacity>
-      
+      <ReusableButton onPress={OnPress} title="Sign Up" routeName={"signup"} />
+      <Linked
+        text="already have an account ? sign in instead"
+        routeName="signin"
+      />
     </View>
   );
 };
@@ -55,9 +48,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  linked: {
-    textDecorationLine: "underline",
-  },
 });
 
-export default SignUp;
+export default SignUpScreen;
