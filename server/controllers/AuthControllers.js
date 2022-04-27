@@ -31,7 +31,7 @@ const signIn = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, MY_SECRET_KEY);
     res.send({ token });
   } catch (error) {
-    return res.status(422).send({ error: "Must provide email and password" });
+    return res.status(422).send({ error: "invalid email or password" });
   }
 
   res.status(201).json({ token });
