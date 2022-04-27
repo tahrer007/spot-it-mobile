@@ -9,7 +9,7 @@ const usersSchema = new Schema({
     
   },
   email: {
-    type: Number,
+    type: String,
     required: [true, "Please provide a email"],
     unique : true
   },
@@ -19,6 +19,6 @@ const usersSchema = new Schema({
   },
 });
 
-const user = mongoose.model("users", usersSchema);
+const User = mongoose.model("users", usersSchema);
 
-module.exports = user;
+module.exports = User;
