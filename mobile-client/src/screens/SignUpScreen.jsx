@@ -36,7 +36,7 @@ const SignUpScreen = () => {
       <ReusableButton onPress={OnPress} title="Sign Up" routeName={"signup"} />
       <Linked
         text="already have an account ? sign in instead"
-        routeName="signin"
+        routeName="login"
       />
     </View>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import ToggleButton from "../components/reusabeles/ToggleButton";
 
-const LogInScreen = () => {
+const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Text> sign in </Text>
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogInScreen;
+export default LoginScreen;

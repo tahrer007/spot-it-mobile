@@ -5,10 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 
 const Linked = ({ text, routeName }) => {
   const navigation = useNavigation();
-  console.log(navigation)
 
   return (
-    <TouchableOpacity OnPress={() => navigation.navigate(routeName)}>
+    <TouchableOpacity onPress={() => navigation.navigate(routeName)}>
       <Text style={styles.linked}>{text}</Text>
     </TouchableOpacity>
   );
