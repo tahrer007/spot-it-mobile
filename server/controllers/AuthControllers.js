@@ -9,8 +9,9 @@ const signUp = async (req, res) => {
   });
 
   try {
-    const addUser = await newUser.save();
-    res.status(201).json(addUser);
+    const user = await newUser.save();
+    const token = jwt.sign({userId : user._id },"MY SECRET KEY !!");
+    res.status(201).json({token});
   } catch (err) {
     res.status(422).json({ message: err.message });
   }
