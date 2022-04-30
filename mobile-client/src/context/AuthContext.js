@@ -11,7 +11,7 @@ const signup = (dispatch) => {
   return async ({ name, email, password }) => {
     try {
       const response = await api.post("/signup", {name, email, password });
-      console.log(response);
+      console.log(response.data);
     } catch (error) {
       console.log(error.message);
     }
