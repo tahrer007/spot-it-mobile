@@ -3,14 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ReusableButton from "../components/reusabeles/Button";
 import InputField from "../components/reusabeles/InputField";
 import Linked from "../components/reusabeles/Linked";
+//import  useStore from "../context/CreateDateContext"
 
 const SignupScreen = () => {
+  //const { isSignedIn } = useStore();
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const OnPress = (routeName) => {};
+
+  useEffect(() => {
+    console.log(isSignedIn);
+  }, []);
 
   return (
     <View style={styles.container}>
