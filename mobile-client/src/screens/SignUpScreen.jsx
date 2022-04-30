@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ReusableButton from "../components/reusabeles/Button";
 import InputField from "../components/reusabeles/InputField";
 import Linked from "../components/reusabeles/Linked";
-//import  useStore from "../context/CreateDateContext"
-
+import { Context as AuthContext } from "../context/AuthContext";
 const SignupScreen = () => {
-  //const { isSignedIn } = useStore();
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const {state,signup} = useContext(AuthContext) ;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const OnPress = (routeName) => {};
+  const OnPress = (routeName) => {
+    signup({email,password}) ; 
+  };
 
   useEffect(() => {
-    console.log(isSignedIn);
+    //console.log(isSignedIn);
   }, []);
 
   return (
@@ -23,20 +24,20 @@ const SignupScreen = () => {
       <InputField
         placeholder="user name"
         secureTextEntry={false}
-        value={userName}
-        onChangeText={(userName) => setUserName(userName)}
+        value={name}
+        onChangeText={(name) => setName(name)}
       />
       <InputField
         placeholder="email"
         secureTextEntry={false}
-        value={userEmail}
-        onChangeText={(userEmail) => setUserEmail(userEmail)}
+        value={email}
+        onChangeText={(email) => setEmail(email)}
       />
       <InputField
         placeholder="password"
         secureTextEntry={true}
-        value={userPassword}
-        onChangeText={(userPassword) => setUserPassword(userPassword)}
+        value={password}
+        onChangeText={(password) => setPassword(password)}
       />
 
       <ReusableButton onPress={OnPress} title="Sign Up" routeName={"signup"} />
