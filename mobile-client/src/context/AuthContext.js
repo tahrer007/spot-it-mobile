@@ -8,17 +8,13 @@ const authReducer = (state, action) => {
   }
 };
 const signup = (dispatch) => {
-  return async ({ email, password }) => {
-      try{
-        const response = await api.post("/signup",{email,password})
-        console.log(response)
-      }catch(error){
-        console.log(error.message)
-
-      }
-
-
-
+  return async ({ name, email, password }) => {
+    try {
+      const response = await api.post("/signup", {name, email, password });
+      console.log(response);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 const signin = (dispatch) => {

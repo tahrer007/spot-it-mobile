@@ -12,7 +12,7 @@ const SignupScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const OnPress = (routeName) => {
-    signup({email,password}) ; 
+    signup({name,email,password}) ; 
   };
 
   useEffect(() => {
