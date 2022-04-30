@@ -9,8 +9,9 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
 
     case "SIGN_UP":
-      return { token: action.payload ,errorMessage:""};
-
+      return { token: action.payload, errorMessage: "" };
+    case "SIGN_IN":
+      return { token: action.payload, errorMessage: "" };
     default:
       return state;
   }
@@ -29,9 +30,20 @@ const signup = (dispatch) => {
     }
   };
 };
-const signin = (dispatch) => {
-  return ({ email, password }) => {};
-};
+const signin =
+  (dispatch) =>
+  async ({ email, password }) => {
+    try {
+      const response = await api.post("/signin", { email, password });
+      await AsyncStorage.setItem("token", response.data.token);
+      dispatch({ type: "SIGN_IN", payload: response.data.token });
+    } catch (error) {
+      dispatch({
+        type: "ADD_ERROR",
+        payload: "something went wrong with sign in",
+      });
+    }
+  };
 const signout = (dispatch) => {
   return () => {};
 };

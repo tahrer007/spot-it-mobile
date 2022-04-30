@@ -6,6 +6,7 @@ import SignupScreen from "../screens/SignupScreen";
 import AboutScreen from "../screens/AboutScreen";
 import AccountScreen from "../screens/AccountScreen";
 import SosScreen from "../screens/SosScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import LocationsMap from "../screens/LocationsMap";
 import RedNeighborhoods from "../screens/RedNeighborhoods";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -21,6 +22,7 @@ const Routes = () => {
       <Drawer.Screen name="sos" component={SosScreen} />
       <Drawer.Screen name="acount" component={AccountScreen} />
       <Drawer.Screen name="about" component={AboutScreen} />
+      <Drawer.Screen name="profile" component={ProfileScreen} />
      
     </Drawer.Navigator>
   );
