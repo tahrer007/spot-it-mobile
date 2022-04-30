@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text ,StyleSheet } from "react-native";
 
-const SosScreen = () => {
+const ProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <Text> sos  </Text>
+      <Text> ProfileScreen  </Text>
     </View>
   );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SosScreen;
+export default ProfileScreen;

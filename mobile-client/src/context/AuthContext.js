@@ -1,5 +1,5 @@
 import createDateContext from "./createDateContext";
-import api from "../services/api/api"
+import api from "../services/api/api";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -7,24 +7,18 @@ const authReducer = (state, action) => {
       return state;
   }
 };
-const signup= (dispatch)=>{
-  return ({email, password})=>{
-
-  }
-}
-const signin= (dispatch)=>{
-  return ({email, password})=>{
-    
-  }
-}
-const signout =(dispatch)=>{
-  return ()=>{
-
-  }
-}
+const signup = (dispatch) => {
+  return ({ email, password }) => {};
+};
+const signin = (dispatch) => {
+  return ({ email, password }) => {};
+};
+const signout = (dispatch) => {
+  return () => {};
+};
 
 export const { Provider, Context } = createDateContext(
   authReducer,
-  {signup,signin,signout},//actions
-  { isSingnedIn: false }//state 
+  { signup, signin, signout }, //actions
+  { isSingnedIn: false } //state
 );
