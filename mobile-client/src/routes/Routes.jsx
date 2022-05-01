@@ -10,6 +10,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import LocationsMap from "../screens/LocationsMap";
 import RedNeighborhoods from "../screens/RedNeighborhoods";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
 const Drawer = createDrawerNavigator();
 
 const Routes = () => {

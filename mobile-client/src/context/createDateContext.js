@@ -16,29 +16,3 @@ export default (reducer , actions,defaultValue)=>{
 
 
 
-/*import React, { useReducer, createContext, useContext } from "react";
-import { initialState, authReducer } from "./reducers";
-export const store = createContext();
-
-export const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
-
-  const signIn = (email, password) => {
-    dispatch({
-      type: "SIGN_IN",
-      payLoad: {},
-    });
-  };
-  const logIn = () => {};
-  const logOut = () => {};
-  const value = {
-    isSignedIn: state.isSignedIn,
-  };
-  return <store.Provider>{children}</store.Provider>;
-};
-const useStore = () => {
-  const context = useContext(store);
-  if (!context) throw new Error("useStore must be used within store");
-  return context;
-};
-export default useStore;*/
