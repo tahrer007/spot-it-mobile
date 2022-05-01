@@ -26,6 +26,8 @@ const signup = (dispatch) => {
       dispatch({ type: "SIGN_UP", payload: response.data.token });
       navigator("acount");
     } catch (error) {
+      console.log(error.message)
+
       dispatch({
         type: "ADD_ERROR",
         payload: "something went wrong with sign up",
@@ -42,6 +44,7 @@ const signin =
       dispatch({ type: "SIGN_IN", payload: response.data.token });
       navigate("acount");
     } catch (error) {
+      console.log(error.message)
       dispatch({
         type: "ADD_ERROR",
         payload: "something went wrong with sign in",
