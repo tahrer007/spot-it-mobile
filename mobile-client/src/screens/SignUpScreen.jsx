@@ -39,7 +39,7 @@ const SignupScreen = () => {
         value={password}
         onChangeText={(password) => setPassword(password)}
       />
-      {state?.errorMessage && <Text style={styles.errrorMessage}>{state.errorMessage}</Text>}
+     
       <ReusableButton onPress={OnPress} title="Sign Up" routeName={"signup"} />
       <Linked
         text="already have an account ? sign in instead"

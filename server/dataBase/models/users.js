@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+import { isEmail } from "validator";
 
 const usersSchema = new Schema({
   name: {
@@ -11,7 +12,8 @@ const usersSchema = new Schema({
   email: {
     type: String,
     required: [true, "Please provide a email"],
-    unique
+    unique: true,
+    validate: [isEmail, "invalid email"],
   },
   password: {
     type: String,
@@ -37,16 +39,16 @@ usersSchema.pre("save", function (next) {
   });
 });
 
-usersSchema.methods.comparePassword = function (candidatePassword){
-  const user=this ; 
-  return new Promise ((resolve,reject)=>{
-    bcrypt.compare(candidatePassword,user.password,(err,isMatch)=>{
-      if(err)return reject (err);
-      if(!isMatch)return reject(false);
-      resolve(true) ; 
-    })
-  })
-}
+usersSchema.methods.comparePassword = function (candidatePassword) {
+  const user = this;
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
+      if (err) return reject(err);
+      if (!isMatch) return reject(false);
+      resolve(true);
+    });
+  });
+};
 
 const User = mongoose.model("users", usersSchema);
 
