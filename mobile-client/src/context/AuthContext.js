@@ -1,6 +1,7 @@
 import createDateContext from "./createDateContext";
 import api from "../services/api/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {navigate} from "../routes/navigation/RootNavigation"
 
 
 const intialState = { token: null, errorMessage: "" };
@@ -23,7 +24,7 @@ const signup = (dispatch) => {
       const response = await api.post("/signup", { name, email, password });
       await AsyncStorage.setItem("token", response.data.token);
       dispatch({ type: "SIGN_UP", payload: response.data.token });
-      navigator("acount")
+      navigator("acount");
     } catch (error) {
       dispatch({
         type: "ADD_ERROR",
@@ -39,6 +40,7 @@ const signin =
       const response = await api.post("/signin", { email, password });
       await AsyncStorage.setItem("token", response.data.token);
       dispatch({ type: "SIGN_IN", payload: response.data.token });
+      navigate("acount");
     } catch (error) {
       dispatch({
         type: "ADD_ERROR",
