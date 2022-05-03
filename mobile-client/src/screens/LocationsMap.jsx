@@ -10,7 +10,7 @@ const initialRegion={
   longitudeDelta: 0.0421,
 }
 
-/*const LocationsMap = () => {
+const LocationsMap = () => {
   return (
     <View style={styles.container}>
       
@@ -21,23 +21,7 @@ const initialRegion={
       </MapView>
     </View>
   );
-};*/
-export default function LocationsMap(props) {
-  render() {
-    return (
-      <MapView>
-        {this.state.polygons.map(polygon =>
-          (<MapView.Polygon
-            key={polygon.id}
-            coordinates={polygon.coordinates}
-            fillColor='red'
-            strokeColor='black'
-          />),
-        )}
-      </MapView>
-    );
-  }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
