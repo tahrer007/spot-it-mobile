@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import MapView, { PROVIDER_GOOGLE, Marker ,Polygon } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -15,8 +15,17 @@ const LocationsMap = () => {
       <MapView
         style={styles.map}
         region={initialRegion}
-        provider={PROVIDER_GOOGLE}
+        //provider={PROVIDER_GOOGLE}
+        zoomControlEnabled={true}
+        zoomEnabled={true}
       >
+        <MapView.Polygon
+          coordinates={HaifaCoords}
+          fillColor={"#d3d3d3"}
+          strokeColor="rgba(0,0,0,0.5)"
+          strokeWidth={2}
+          
+        />
         {/*{HaifaCoords.map((marker, index) => (
           <Marker
             key={index}
@@ -25,7 +34,6 @@ const LocationsMap = () => {
             description={"description !!! "}
           />
         ))}*/}
-       
       </MapView>
     </View>
   );
