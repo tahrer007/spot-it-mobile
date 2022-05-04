@@ -20,8 +20,6 @@ const LocationsMap = () => {
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyles}
-      
-        
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
