@@ -6,8 +6,8 @@ import mapStyles from "../styles/mapStyles";
 const initialRegion = {
   latitude: 32.794241949530296,
   longitude: 34.98972566204482,
-  latitudeDelta: 0.009,
-  longitudeDelta: 0.009,
+  latitudeDelta: 0.09,
+  longitudeDelta: 0.02,
 };
 
 const LocationsMap = () => {
@@ -20,6 +20,8 @@ const LocationsMap = () => {
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyles}
+      
+        
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
