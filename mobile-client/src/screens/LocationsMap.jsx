@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import MapView from "react-native-maps";
+import MapView ,{PROVIDER_GOOGLE} from "react-native-maps";
 import Polygon from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 const initialRegion = {
@@ -13,7 +13,9 @@ const initialRegion = {
 const LocationsMap = () => {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} region={initialRegion}></MapView>
+      <MapView style={styles.map} region={initialRegion}
+      provider={PROVIDER_GOOGLE}
+      ></MapView>
     </View>
   );
 };
