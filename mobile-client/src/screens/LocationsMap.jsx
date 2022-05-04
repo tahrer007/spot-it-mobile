@@ -6,8 +6,8 @@ import HaifaCoords from "../services/haifaCoords";
 const initialRegion = {
   latitude: 32.794241949530296,
   longitude: 34.98972566204482,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+  latitudeDelta: 0.009,
+  longitudeDelta: 0.009,
 };
 
 const LocationsMap = () => {
