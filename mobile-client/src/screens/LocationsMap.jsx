@@ -13,22 +13,24 @@ const initialRegion = {
 };
 
 const LocationsMap = () => {
-  const [marks, setMarks] = useState([]);
+  const [markers, setMarkers] = useState([]);
   const [region, setRegion] = useState(initialRegion);
 
   useEffect(() => {
-    const lat = 32.794241949530296;
-    const lng = 34.98972566204482;
-    console.log(
-      inPolygon({ lat: 32.794241949530296, lng: 34.98972566204482 })
-    );
-  }, []);
+    //const lat = 32.794241949530296;
+    //const lng = 34.98972566204482;
+    //console.log(inPolygon({ lat: 32.794241949530296, lng: 34.98972566204482 }));
+    console.log(markers)
+  }, [markers]);
 
   //const addMarker = (marker) => console.log(JSON.stringify(marker.currentTarget.viewConfig.NativeProps.coordinates));
-  const mapPressed =(e)=>{
-   // console.log(e.nativeEvent.coordinate)
-    console.log(e.nativeEvent.action)
-  }
+  const mapPressed = (e) => {
+    // console.log(e.nativeEvent.coordinate)
+    //setMarkers(e.nativeEvent.action);
+    setMarkers(oldArray => [...oldArray, e.nativeEvent.coordinate]);
+
+    //console.log(e.nativeEvent.coordinate);
+  };
   return (
     <View style={styles.container}>
       <MapView
@@ -40,8 +42,7 @@ const LocationsMap = () => {
         showsCompass={true}
         showsMyLocationButton={true}
         onRegionChange={() => setRegion(region)}
-        onPress={mapPressed }
-        
+        onPress={mapPressed}
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
@@ -50,17 +51,19 @@ const LocationsMap = () => {
           strokeWidth={3}
           tappable={true}
           //onPress={mapPressed }
-        
-          
         />
-        {/*{HaifaCoords.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={{ latitude: marker.lat, longitude: marker.lng }}
-            title={"test!!!"}
-            description={"description !!! "}
-          />
-        ))}*/}
+        {(markers.length) ?
+          markers.map((marker, index) => (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+              }}
+              title={"test!!!"}
+              description={"description !!! "}
+            />
+          )):null}
       </MapView>
     </View>
   );
