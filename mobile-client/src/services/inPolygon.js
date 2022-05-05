@@ -3,8 +3,8 @@
 import { PolyUtil } from "node-geometry-library";
 import HaifaCoords from "./haifaCoords";
 
-const isInsidePolygon = (location) => 
+const inPolygon = (location) => 
   PolyUtil.containsLocation(location, HaifaCoords);
  
 
-export default isInsidePolygon;
+export default inPolygon;
