@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect ,useState , useCallback, useRef } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
+import isInsidePolygon from "../services/isInsidePolygon";
+
 const initialRegion = {
   latitude: 32.794241949530296,
   longitude: 34.98972566204482,
@@ -11,6 +13,12 @@ const initialRegion = {
 };
 
 const LocationsMap = () => {
+  const [marks,setMarks]=useState([]);
+  useEffect(() => {
+    const lat = 32.794241949530296;
+    const lng = 34.98972566204482;
+    console.log(isInsidePolygon({ lat:32.794241949530296, lng: 34.98972566204482 }));
+  }, []);
   return (
     <View style={styles.container}>
       <MapView
@@ -20,12 +28,15 @@ const LocationsMap = () => {
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyles}
+        showsCompass	= {true}
+        showsMyLocationButton	={true}
+        
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
           fillColor="rgb(243,243,243)"
           strokeColor="rgba(0,0,0,0.5)"
-          strokeWidth={2}
+          strokeWidth={3}
         />
         {/*{HaifaCoords.map((marker, index) => (
           <Marker
