@@ -16,33 +16,38 @@ const LocationsMap = () => {
   const [markers, setMarkers] = useState([]);
   const [region, setRegion] = useState(initialRegion);
 
+  useEffect(()=>{
+   //console.log(Dimensions.get("window").height*90/100)
+  },[])
+
   useEffect(() => {
     //const lat = 32.794241949530296;
     //const lng = 34.98972566204482;
     //console.log(inPolygon({ lat: 32.794241949530296, lng: 34.98972566204482 }));
-    console.log(markers)
+    console.log(markers);
   }, [markers]);
 
   //const addMarker = (marker) => console.log(JSON.stringify(marker.currentTarget.viewConfig.NativeProps.coordinates));
   const mapPressed = (e) => {
     // console.log(e.nativeEvent.coordinate)
     //setMarkers(e.nativeEvent.action);
-    setMarkers(oldArray => [...oldArray, e.nativeEvent.coordinate]);
+    setMarkers((oldArray) => [...oldArray, e.nativeEvent.coordinate]);
 
     //console.log(e.nativeEvent.coordinate);
   };
   return (
     <View style={styles.container}>
       <MapView
+        showsMyLocationButton={true}
         style={styles.map}
         region={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         showsCompass={true}
-        showsMyLocationButton={true}
         onRegionChange={() => setRegion(region)}
         onPress={mapPressed}
+        mapType={"standard"}
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
@@ -52,18 +57,19 @@ const LocationsMap = () => {
           tappable={true}
           //onPress={mapPressed }
         />
-        {(markers.length) ?
-          markers.map((marker, index) => (
-            <Marker
-              key={index}
-              coordinate={{
-                latitude: marker.latitude,
-                longitude: marker.longitude,
-              }}
-              title={"test!!!"}
-              description={"description !!! "}
-            />
-          )):null}
+        {markers.length
+          ? markers.map((marker, index) => (
+              <Marker
+                key={index}
+                coordinate={{
+                  latitude: marker.latitude,
+                  longitude: marker.longitude,
+                }}
+                title={"test!!!"}
+                description={"description !!! "}
+              />
+            ))
+          : null}
       </MapView>
     </View>
   );
@@ -78,7 +84,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    height: (Dimensions.get("window").height*90/100),
   },
 });
 
