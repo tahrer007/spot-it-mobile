@@ -14,22 +14,28 @@ const initialRegion = {
 
 const LocationsMap = () => {
   const [marks,setMarks]=useState([]);
+  const [region,setRegion]=useState(initialRegion)
+
   useEffect(() => {
     const lat = 32.794241949530296;
     const lng = 34.98972566204482;
     console.log(isInsidePolygon({ lat:32.794241949530296, lng: 34.98972566204482 }));
   }, []);
+
+
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
-        region={initialRegion}
+        region={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyles}
         showsCompass	= {true}
         showsMyLocationButton	={true}
+        onRegionChange={(region)=>setRegion(region)}
+
         
       >
         <MapView.Polygon
