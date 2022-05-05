@@ -25,8 +25,9 @@ const LocationsMap = () => {
   }, []);
 
   //const addMarker = (marker) => console.log(JSON.stringify(marker.currentTarget.viewConfig.NativeProps.coordinates));
-  const mapPressed =()=>{
-
+  const mapPressed =(e)=>{
+   // console.log(e.nativeEvent.coordinate)
+    console.log(e.nativeEvent.action)
   }
   return (
     <View style={styles.container}>
@@ -40,6 +41,7 @@ const LocationsMap = () => {
         showsMyLocationButton={true}
         onRegionChange={() => setRegion(region)}
         onPress={mapPressed }
+        
       >
         <MapView.Polygon
           coordinates={HaifaCoords}
@@ -47,7 +49,8 @@ const LocationsMap = () => {
           strokeColor="rgba(0,0,0,0.5)"
           strokeWidth={3}
           tappable={true}
-          //onPress={(e)=>console.log(e.nativeEvent.coordinate)}
+          //onPress={mapPressed }
+        
           
         />
         {/*{HaifaCoords.map((marker, index) => (
