@@ -34,13 +34,19 @@ const LocationsMap = () => {
     setMarkers((oldArray) => [...oldArray, e.nativeEvent.coordinate]);
 
     //console.log(e.nativeEvent.coordinate);
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+      mapRef.current = map;
+    }, []);
+
   };
   return (
     <View style={styles.container}>
       <MapView
         showsMyLocationButton={true}
         style={styles.map}
-        region={region}
+        ref={mapRef}
+        initialRegion={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
