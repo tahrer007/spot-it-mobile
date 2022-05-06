@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions , Image} from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
@@ -16,9 +16,9 @@ const LocationsMap = () => {
   const [markers, setMarkers] = useState([]);
   const [region, setRegion] = useState(initialRegion);
 
-  useEffect(()=>{
-   //console.log(Dimensions.get("window").height*90/100)
-  },[])
+  useEffect(() => {
+    //console.log(Dimensions.get("window").height*90/100)
+  }, []);
 
   useEffect(() => {
     //const lat = 32.794241949530296;
@@ -34,18 +34,17 @@ const LocationsMap = () => {
     setMarkers((oldArray) => [...oldArray, e.nativeEvent.coordinate]);
 
     //console.log(e.nativeEvent.coordinate);
-    const mapRef = useRef();
+    /*const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
       mapRef.current = map;
-    }, []);
-
+    }, []);*/
   };
   return (
     <View style={styles.container}>
       <MapView
         showsMyLocationButton={true}
         style={styles.map}
-        ref={mapRef}
+        //ref={mapRef}
         initialRegion={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
@@ -73,8 +72,13 @@ const LocationsMap = () => {
                 }}
                 title={"test!!!"}
                 description={"description !!! "}
-                //image={{uri: ''}}
-              />
+              >
+                <Image
+                  source={require("../../assets/pumbaa.png")}
+                  style={styles.markerIcon}
+                  resizeMode="contain"
+                />
+              </Marker>
             ))
           : null}
       </MapView>
@@ -91,7 +95,11 @@ const styles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get("window").width,
-    height: (Dimensions.get("window").height*90/100),
+    height: (Dimensions.get("window").height * 90) / 100,
+  },
+  markerIcon: {
+    height: 30,
+    width: 30,
   },
 });
 
