@@ -63,6 +63,7 @@ const LocationsMap = () => {
           tappable={true}
           //onPress={mapPressed }
   />*/}
+  //TO DO add multiple markers not working  
         {markers.length
           ? markers.map((marker, index) => (
               <Marker
