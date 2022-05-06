@@ -55,14 +55,14 @@ const LocationsMap = () => {
         onPress={mapPressed}
         mapType={"standard"}
       >
-        <MapView.Polygon
+        {/*<MapView.Polygon
           coordinates={HaifaCoords}
           fillColor="rgb(243,243,243)"
           strokeColor="rgba(0,0,0,0.5)"
           strokeWidth={3}
           tappable={true}
           //onPress={mapPressed }
-        />
+  />*/}
         {markers.length
           ? markers.map((marker, index) => (
               <Marker
