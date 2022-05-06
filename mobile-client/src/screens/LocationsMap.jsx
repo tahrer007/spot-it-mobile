@@ -73,6 +73,7 @@ const LocationsMap = () => {
                 }}
                 title={"test!!!"}
                 description={"description !!! "}
+                //image={{uri: ''}}
               />
             ))
           : null}
