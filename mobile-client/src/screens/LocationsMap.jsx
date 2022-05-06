@@ -54,6 +54,7 @@ const LocationsMap = () => {
         onPress={mapPressed}
         mapType={"standard"}
       >
+        //TODO on press not working correctly 
         {/*<MapView.Polygon
           coordinates={HaifaCoords}
           fillColor="rgb(243,243,243)"
