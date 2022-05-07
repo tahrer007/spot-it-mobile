@@ -24,7 +24,7 @@ const LocationsMap = () => {
 
   useEffect(async () => {
     const response = await getAllLocations();
-    response.status === "ok" ? intialMarks(response.data) : setError(response);
+    response?.status === "ok" ? intialMarks(response.data) : setError(response);
   }, []);
 
   const mapPress = (e) => {

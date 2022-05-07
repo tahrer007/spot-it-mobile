@@ -1,6 +1,7 @@
 import api from "../api";
 
 const getAllLocations = async () => {
+  conaole.log("teeeeeeeeeeeeeeeeeeeeeeeeeest")
   try {
     const { data } = await api.get("locations/allLocations");
     return { status: "ok", data };
@@ -10,6 +11,7 @@ const getAllLocations = async () => {
   }
 };
 
+export { getAllLocations  };
 const addLocation = async (newLocation) => {
     console.log(newLocation) ; 
    
@@ -20,8 +22,7 @@ const addLocation = async (newLocation) => {
         console.log(error.message);
         
       }
-    9
+   
   };
 
 
-export { getAllLocations , addLocation };
