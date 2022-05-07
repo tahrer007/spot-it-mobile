@@ -45,6 +45,8 @@ const LocationsMap = () => {
     }
   };
 
+  const hideModel = () => setModalVisible(!modalVisible);
+
   return (
     <View style={styles.container}>
       <MapView
@@ -88,7 +90,7 @@ const LocationsMap = () => {
             ))
           : null}
       </MapView>
-      {modalVisible && <LocationDetailsForm />}
+      {modalVisible && <LocationDetailsForm hideModel={hideModel} />}
     </View>
   );
 };

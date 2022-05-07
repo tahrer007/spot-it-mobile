@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import ReusableButton from "./reusabeles/Button";
 
-const LocationDetailsForm = () => {
+const LocationDetailsForm = ({ cordinates,hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const onPress = (name) => {
     if (name === "submit") {
@@ -10,6 +10,8 @@ const LocationDetailsForm = () => {
     } else {
       setModalVisible(!modalVisible);
     }
+
+    hideModel();
   };
   return (
     <Modal
@@ -28,12 +30,12 @@ const LocationDetailsForm = () => {
             <ReusableButton
               title={"Submit"}
               onPress={onPress}
-              routeName={"Submit"}
+              routeName={"submit"}
             />
             <ReusableButton
               title={"Cancel"}
               onPress={onPress}
-              routeName={"Cancel"}
+              routeName={"cancel"}
             />
           </View>
         </View>
