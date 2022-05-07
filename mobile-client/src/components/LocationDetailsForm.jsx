@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, Modal, StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  Dimensions,
+  Modal,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from "react-native";
 import ReusableButton from "./reusabeles/Button";
 import RadioForm from "react-native-simple-radio-button";
 
@@ -29,7 +36,7 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
 
   return (
     <Modal
-    style={styles.modalView}
+      style={styles.modalView}
       animationType="slide"
       transparent={true}
       visible={modalVisible}
@@ -88,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    width :  (Dimensions.get("window").width * 90) / 100,
+    width: (Dimensions.get("window").width * 90) / 100,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -106,9 +113,8 @@ const styles = StyleSheet.create({
 
   subContainer: {
     flexDirection: "row",
-    justifyContent :"flex-start"
+    justifyContent: "flex-start",
   },
-
 });
 
 export default LocationDetailsForm;
