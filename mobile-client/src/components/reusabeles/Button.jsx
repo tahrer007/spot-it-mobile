@@ -17,9 +17,9 @@ const ReusableButton = ({ title, onPress ,routeName}) => {
 
 const styles = StyleSheet.create({
   Button: {
-    margin: 20,
+    margin: 10,
     height: 40,
-    width: 140,
+    width: 100,
   },
 });
 
