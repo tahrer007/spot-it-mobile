@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { View, Text, StyleSheet, Dimensions , Image} from "react-native";
+import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
@@ -17,28 +17,17 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
 
   useEffect(() => {
-    //console.log(Dimensions.get("window").height*90/100)
-  }, []);
-
-  useEffect(() => {
-    //const lat = 32.794241949530296;
-    //const lng = 34.98972566204482;
-    //console.log(inPolygon({ lat: 32.794241949530296, lng: 34.98972566204482 }));
     console.log(markers);
   }, [markers]);
 
-  //const addMarker = (marker) => console.log(JSON.stringify(marker.currentTarget.viewConfig.NativeProps.coordinates));
-  const mapPressed = (e) => {
-    // console.log(e.nativeEvent.coordinate)
-    //setMarkers(e.nativeEvent.action);
-    setMarkers((oldArray) => [...oldArray, e.nativeEvent.coordinate]);
-
-    //console.log(e.nativeEvent.coordinate);
-    /*const mapRef = useRef();
-    const onMapLoad = useCallback((map) => {
-      mapRef.current = map;
-    }, []);*/
+  const mapPress = (e) => {
+    const newLocation = {
+      latitude: e.nativeEvent.coordinate.latitude,
+      longitude: e.nativeEvent.coordinate.longitude,
+    };
+    setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
   };
+
   return (
     <View style={styles.container}>
       <MapView
@@ -51,19 +40,18 @@ const LocationsMap = () => {
         provider={PROVIDER_GOOGLE}
         showsCompass={true}
         onRegionChange={() => setRegion(region)}
-        onPress={mapPressed}
+        onPress={mapPress}
         mapType={"standard"}
       >
-        //TODO on press not working correctly 
         {/*<MapView.Polygon
           coordinates={HaifaCoords}
           fillColor="rgb(243,243,243)"
           strokeColor="rgba(0,0,0,0.5)"
           strokeWidth={3}
           tappable={true}
-          //onPress={mapPressed }
+          //onPress={mapPressed}
   />*/}
-  //TO DO add multiple markers not working  
+
         {markers.length
           ? markers.map((marker, index) => (
               <Marker
