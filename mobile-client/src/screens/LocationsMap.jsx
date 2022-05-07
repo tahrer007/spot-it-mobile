@@ -21,13 +21,13 @@ const LocationsMap = () => {
   }, [markers]);
 
   const mapPress = (e) => {
-    console.log( e.nativeEvent.coordinate) ;
-    
+    console.log(e.nativeEvent.coordinate);
+
     const newLocation = {
-      latitude: e.nativeEvent.coordinate.latitude,
-      longitude: e.nativeEvent.coordinate.longitude,
+      lat: e.nativeEvent.coordinate.latitude,
+      lng: e.nativeEvent.coordinate.longitude,
     };
-    console.log(inPolygon(newLocation))
+    console.log(inPolygon(newLocation));
     setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
   };
 
@@ -42,7 +42,7 @@ const LocationsMap = () => {
         provider={PROVIDER_GOOGLE}
         showsCompass={true}
         onRegionChange={() => setRegion(region)}
-         onPress={mapPress}
+        onPress={mapPress}
         mapType={"standard"}
       >
         {/*<MapView.Polygon
@@ -59,8 +59,8 @@ const LocationsMap = () => {
               <Marker
                 key={index}
                 coordinate={{
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
+                  latitude: marker.lat,
+                  longitude: marker.lng,
                 }}
                 title={"test!!!"}
                 description={"description !!! "}
