@@ -17,14 +17,17 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
 
   useEffect(() => {
-    console.log(markers);
+    //console.log(markers);
   }, [markers]);
 
   const mapPress = (e) => {
+    console.log( e.nativeEvent.coordinate) ;
+    
     const newLocation = {
       latitude: e.nativeEvent.coordinate.latitude,
       longitude: e.nativeEvent.coordinate.longitude,
     };
+    console.log(inPolygon(newLocation))
     setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
   };
 
@@ -33,14 +36,13 @@ const LocationsMap = () => {
       <MapView
         showsMyLocationButton={true}
         style={styles.map}
-        //ref={mapRef}
         initialRegion={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
         showsCompass={true}
         onRegionChange={() => setRegion(region)}
-        onPress={mapPress}
+         onPress={mapPress}
         mapType={"standard"}
       >
         {/*<MapView.Polygon
@@ -49,8 +51,8 @@ const LocationsMap = () => {
           strokeColor="rgba(0,0,0,0.5)"
           strokeWidth={3}
           tappable={true}
-          //onPress={mapPressed}
-  />*/}
+          onPress={mapPress}
+        />*/}
 
         {markers.length
           ? markers.map((marker, index) => (
