@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, StyleSheet, Text, View, TextInput } from "react-native";
+import { Dimensions, Modal, StyleSheet, Text, View, TextInput } from "react-native";
 import ReusableButton from "./reusabeles/Button";
 import RadioForm from "react-native-simple-radio-button";
 
@@ -29,6 +29,7 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
 
   return (
     <Modal
+    style={styles.modalView}
       animationType="slide"
       transparent={true}
       visible={modalVisible}
@@ -41,7 +42,6 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Add some details :</Text>
           <Text style={styles.modalText}>How many of them ?</Text>
-
           <RadioForm
             radio_props={options}
             initial={0}
@@ -50,12 +50,8 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
             }}
             animation={true}
           />
-          <View style={styles.subContainer}></View>
-          <View style={styles.subContainer}></View>
-
-          <Text style={styles.modalText}>Extra details ? </Text>
-
           {/*   
+             <Text style={styles.modalText}>Extra details ? </Text>
               //TODO : text input not working with model , also there is no error !!
           <TextInput
            autoCapitalize="none"
@@ -92,11 +88,12 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
+    width :  (Dimensions.get("window").width * 90) / 100,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
+    padding: 20,
+    alignItems: "flex-start",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -109,17 +106,9 @@ const styles = StyleSheet.create({
 
   subContainer: {
     flexDirection: "row",
+    justifyContent :"flex-start"
   },
-  inputStyle: {
-    borderColor: "black",
-    borderWidth: 1,
-    fontSize: 18,
-    margin: 5,
-    paddingLeft: 5,
-    marginBottom: 20,
-    height: 40,
-    width: 200,
-  },
+
 });
 
 export default LocationDetailsForm;
