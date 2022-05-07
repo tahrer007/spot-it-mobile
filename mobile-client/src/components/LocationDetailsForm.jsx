@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Modal, StyleSheet, Text, View, TextInput } from "react-native";
 import ReusableButton from "./reusabeles/Button";
 import RadioForm from "react-native-simple-radio-button";
 
 const LocationDetailsForm = ({ cordinates, hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
-  const [chosenOption, setChosenOption] = useState("one"); //will store our current user options
+  const [chosenOption, setChosenOption] = useState("one");
+  const [details, setDetails] = useState("");
+  const [text, onChangeText] = useState("Useless Text");
+
   const options = [
     { label: "one", value: "one" },
     { label: "2-5", value: " 2-5" },
@@ -40,23 +43,37 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
           <Text style={styles.modalText}>How many of them ?</Text>
 
           <RadioForm
-            //style={{ flexDirection: "row" }}
             radio_props={options}
-            initial={0} //initial value of this group
+            initial={0}
             onPress={(value) => {
               setChosenOption(value);
-            }} //if the user changes options, set the new value
+            }}
             animation={true}
-            //labelHorizontal={true}
-            //formHorizontal={true}
-            //labelWrapStyle={{marginLeft : 30}}
-           
-
           />
           <View style={styles.subContainer}></View>
           <View style={styles.subContainer}></View>
 
           <Text style={styles.modalText}>Extra details ? </Text>
+
+          {/*<TextInput
+            style={styles.inputStyle}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder={"add extra details ..."}
+            value={details}
+            onChangeText={(text) => {
+              setDetails(text);
+            }}
+            //multiline={true}
+            //numberOfLines={4}
+          />*/}
+
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={onChangeText}
+            value={text}
+          />
+
           <View style={styles.subContainer}>
             <ReusableButton
               title={"Submit"}
@@ -97,28 +114,19 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
+
   subContainer: {
     flexDirection: "row",
+  },
+  inputStyle: {
+    borderColor: "black",
+    borderWidth: 1,
+    fontSize: 18,
+    margin: 5,
+    paddingLeft: 5,
+    marginBottom: 20,
+    height: 40,
+    width: 200,
   },
 });
 
