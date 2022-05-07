@@ -1,34 +1,44 @@
-
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import ReusableButton from "./reusabeles/Button";
 
 const LocationDetailsForm = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
+  const onPress = (name) => {
+    if (name === "submit") {
+      setModalVisible(!modalVisible);
+    } else {
+      setModalVisible(!modalVisible);
+    }
+  };
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        //Alert.alert("Modal has been closed.");
+        setModalVisible(!modalVisible);
+      }}
+    >
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>Hello World!</Text>
+          <View style={styles.buttonsBox}>
+            <ReusableButton
+              title={"Submit"}
+              onPress={onPress}
+              routeName={"Submit"}
+            />
+            <ReusableButton
+              title={"Cancel"}
+              onPress={onPress}
+              routeName={"Cancel"}
+            />
           </View>
         </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
-    </View>
+      </View>
+    </Modal>
   );
 };
 
@@ -73,6 +83,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  buttonsBox: {
+    flexDirection: "row",
   },
 });
 
