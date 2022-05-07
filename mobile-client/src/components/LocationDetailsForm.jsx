@@ -21,8 +21,9 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
     { label: "2-5", value: " 2-5" },
     { label: "more than 5", value: "more than 5" },
   ]; //create our options for radio group
-  const onPress = (name) => {
+  const onPress = async(name) => {
     if (name === "submit") {
+      
       setModalVisible(!modalVisible);
     } else {
       setModalVisible(!modalVisible);
