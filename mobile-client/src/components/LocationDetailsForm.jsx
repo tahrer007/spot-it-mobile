@@ -40,12 +40,18 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
           <Text style={styles.modalText}>How many of them ?</Text>
 
           <RadioForm
-            style={{ flexDirection: "row" }}
+            //style={{ flexDirection: "row" }}
             radio_props={options}
             initial={0} //initial value of this group
             onPress={(value) => {
               setChosenOption(value);
             }} //if the user changes options, set the new value
+            animation={true}
+            //labelHorizontal={true}
+            //formHorizontal={true}
+            //labelWrapStyle={{marginLeft : 30}}
+           
+
           />
           <View style={styles.subContainer}></View>
           <View style={styles.subContainer}></View>
