@@ -1,20 +1,11 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import {
-  Alert,
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Modal,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { View, StyleSheet, Dimensions, Image } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
 import inPolygon from "../services/inPolygon";
 import LocationDetailsForm from "../components/LocationDetailsForm";
+import api from "../services/api/api";
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -28,9 +19,16 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
 
-  useEffect(() => {
-    //console.log(markers);
-  }, [markers]);
+  const intialMarks = (dbMarks) => setMarkers(dbMarks);
+
+  useEffect(async () => {
+    try {
+      const { data } = await api.get("locations/allLocations");
+      intialMarks(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const mapPress = (e) => {
     //console.log(e.nativeEvent.coordinate)
