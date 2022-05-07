@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import ReusableButton from "./reusabeles/Button";
+import RadioForm from "react-native-simple-radio-button";
 
-const LocationDetailsForm = ({ cordinates,hideModel }) => {
+const LocationDetailsForm = ({ cordinates, hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
+  const [chosenOption, setChosenOption] = useState("apple"); //will store our current user options
+  const options = [
+    { label: "Apple", value: "apple" },
+    { label: "Samsung", value: "samsung" },
+  ]; //create our options for radio group
   const onPress = (name) => {
     if (name === "submit") {
       setModalVisible(!modalVisible);
@@ -25,8 +31,21 @@ const LocationDetailsForm = ({ cordinates,hideModel }) => {
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Hello World!</Text>
-          <View style={styles.buttonsBox}>
+          <Text style={styles.modalText}>Add some details :</Text>
+          <Text style={styles.modalText}>How many of them ?</Text>
+
+          <RadioForm
+            radio_props={options}
+            initial={0} //initial value of this group
+            onPress={(value) => {
+              setChosenOption(value);
+            }} //if the user changes options, set the new value
+          />
+          <View style={styles.subContainer}></View>
+          <View style={styles.subContainer}></View>
+
+          <Text style={styles.modalText}>Extra details ? </Text>
+          <View style={styles.subContainer}>
             <ReusableButton
               title={"Submit"}
               onPress={onPress}
@@ -86,7 +105,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
-  buttonsBox: {
+  subContainer: {
     flexDirection: "row",
   },
 });
