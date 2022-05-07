@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import ReusableButton from "./reusabeles/Button";
 import RadioForm from "react-native-simple-radio-button";
 
 const LocationDetailsForm = ({ cordinates, hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
-  const [chosenOption, setChosenOption] = useState("apple"); //will store our current user options
+  const [chosenOption, setChosenOption] = useState("one"); //will store our current user options
   const options = [
-    { label: "Apple", value: "apple" },
-    { label: "Samsung", value: "samsung" },
+    { label: "one", value: "one" },
+    { label: "2-5", value: " 2-5" },
+    { label: "more than 5", value: "more than 5" },
   ]; //create our options for radio group
   const onPress = (name) => {
     if (name === "submit") {
@@ -19,6 +20,10 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
 
     hideModel();
   };
+  useEffect(() => {
+    console.log(chosenOption);
+  }, [chosenOption]);
+
   return (
     <Modal
       animationType="slide"
@@ -35,6 +40,7 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
           <Text style={styles.modalText}>How many of them ?</Text>
 
           <RadioForm
+            style={{ flexDirection: "row" }}
             radio_props={options}
             initial={0} //initial value of this group
             onPress={(value) => {
