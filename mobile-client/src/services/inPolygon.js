@@ -3,15 +3,7 @@
 import { PolyUtil } from "node-geometry-library";
 import HaifaCoords from "./haifaCoords";
 
-const inPolygon = (location) =>{
-
-  const test = {
-    lat : location.latitude , 
-    lng : location.longitude , 
-  
-  } 
-    return PolyUtil.containsLocation(test, HaifaCoords);
-}
-
+const inPolygon = (location) =>
+  PolyUtil.containsLocation(location, HaifaCoords);
 
 export default inPolygon;
