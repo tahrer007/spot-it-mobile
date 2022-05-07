@@ -5,7 +5,7 @@ import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
 import inPolygon from "../services/inPolygon";
 import LocationDetailsForm from "../components/LocationDetailsForm";
-import { getAllLocations } from "../services/api/locations/locations";
+import {getAllLocations} from "../services/api/locations/locations";
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -16,15 +16,15 @@ const initialRegion = {
 
 const LocationsMap = () => {
   const [markers, setMarkers] = useState([]);
-  const [error, setError] = useState({});
+  const [error,setError]=useState({});
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
 
   const intialMarks = (dbMarks) => setMarkers(dbMarks);
 
   useEffect(async () => {
-    const response = await getAllLocations();
-    response?.status === "ok" ? intialMarks(response.data) : setError(response);
+    const response =await getAllLocations();
+    (response?.status==="ok") ?intialMarks(response.data) :setError(response) 
   }, []);
 
   const mapPress = (e) => {
