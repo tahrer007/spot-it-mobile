@@ -7,7 +7,7 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [chosenOption, setChosenOption] = useState("one");
   const [details, setDetails] = useState("");
-  const [text, onChangeText] = useState("Useless Text");
+  const [text, setText] = useState("");
 
   const options = [
     { label: "one", value: "one" },
@@ -55,25 +55,17 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
 
           <Text style={styles.modalText}>Extra details ? </Text>
 
-          {/*<TextInput
-            style={styles.inputStyle}
-            autoCapitalize="none"
+          {/*   
+              //TODO : text input not working with model , also there is no error !!
+          <TextInput
+           autoCapitalize="none"
             autoCorrect={false}
             placeholder={"add extra details ..."}
-            value={details}
-            onChangeText={(text) => {
-              setDetails(text);
-            }}
-            //multiline={true}
-            //numberOfLines={4}
-          />*/}
-
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={onChangeText}
+            multiline={true}
+            numberOfLines={4}
+            onChangeText={(val) => setText(val)}
             value={text}
-          />
-
+          />*/}
           <View style={styles.subContainer}>
             <ReusableButton
               title={"Submit"}
