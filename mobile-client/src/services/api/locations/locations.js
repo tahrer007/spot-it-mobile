@@ -20,7 +20,7 @@ const addLocation = async (newLocation) => {
         console.log(error.message);
         
       }
-    
+    9
   };
 
 
