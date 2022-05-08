@@ -1,7 +1,7 @@
 import api from "../api";
 
 const getAllLocations = async () => {
-  conaole.log("teeeeeeeeeeeeeeeeeeeeeeeeeest")
+
   try {
     const { data } = await api.get("locations/allLocations");
     return { status: "ok", data };
@@ -24,5 +24,4 @@ const addLocation = async (newLocation) => {
       }
    
   };
-
 

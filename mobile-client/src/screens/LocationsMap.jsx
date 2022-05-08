@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { View, StyleSheet, Dimensions, Image } from "react-native";
+import { View, StyleSheet, Dimensions, Image ,Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
 import inPolygon from "../services/inPolygon";
 import LocationDetailsForm from "../components/LocationDetailsForm";
-import {getAllLocations} from "../services/api/locations/locations";
+import { getAllLocations } from "../services/api/locations/locations";
+import { formatRelative } from "date-fns";
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -16,15 +17,21 @@ const initialRegion = {
 
 const LocationsMap = () => {
   const [markers, setMarkers] = useState([]);
-  const [error,setError]=useState({});
+  const [error, setError] = useState({});
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
 
   const intialMarks = (dbMarks) => setMarkers(dbMarks);
 
   useEffect(async () => {
-    const response =await getAllLocations();
-    (response?.status==="ok") ?intialMarks(response.data) :setError(response) 
+    setTimeout(async() => {
+      const response = await getAllLocations();
+      console.log(response);
+      response?.status === "ok" ? intialMarks(response.data) : setError(response);
+    }, 1000);
+
+   
+   
   }, []);
 
   const mapPress = (e) => {
@@ -33,6 +40,7 @@ const LocationsMap = () => {
     const newLocation = {
       lat: e.nativeEvent.coordinate.latitude,
       lng: e.nativeEvent.coordinate.longitude,
+      time: new Date(),
     };
     if (inPolygon(newLocation)) {
       setModalVisible(!modalVisible);
@@ -41,6 +49,7 @@ const LocationsMap = () => {
   };
 
   const hideModel = () => setModalVisible(!modalVisible);
+  const formateDateTime =(dateTime)=> formatRelative(Date.parse(dateTime), new Date()) ; 
 
   return (
     <View style={styles.container}>
@@ -73,14 +82,16 @@ const LocationsMap = () => {
                   latitude: marker.lat,
                   longitude: marker.lng,
                 }}
-                title={"test!!!"}
-                description={"description !!! "}
+                title={"Alert"}
+                description={marker.number + " spotted "+formateDateTime(marker.time)}
               >
                 <Image
                   source={require("../../assets/pumbaa.png")}
                   style={styles.markerIcon}
                   resizeMode="contain"
                 />
+                
+          
               </Marker>
             ))
           : null}
