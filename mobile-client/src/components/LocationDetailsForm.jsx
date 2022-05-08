@@ -16,6 +16,7 @@ const LocationDetailsForm = ({ newMarker, hideModel }) => {
   const [chosenOption, setChosenOption] = useState("one");
   const [details, setDetails] = useState("");
   
+  
 
   const options = [
     { label: "one", value: "one" },
@@ -24,11 +25,11 @@ const LocationDetailsForm = ({ newMarker, hideModel }) => {
   ]; //create our options for radio group
   const onPress = async(name) => {
     if (name === "submit") {
-      console.log(newMarker) ;
+      
       newMarker.number =chosenOption ;  
       newMarker.comment=details ;  
-      console.log(newMarker) ; 
-     // const response = await addLocation(newLocation) ;
+       
+      const response = await addLocation(newMarker) ;
       //console.log(response) ;
 
       setModalVisible(!modalVisible);
