@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import ReusableButton from "./reusabeles/Button";
 import RadioForm from "react-native-simple-radio-button";
+import {addLocation}from "../services/api/locations/locations"
 
-const LocationDetailsForm = ({ cordinates, hideModel }) => {
+const LocationDetailsForm = ({ newMarker, hideModel }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [chosenOption, setChosenOption] = useState("one");
   const [details, setDetails] = useState("");
-  const [text, setText] = useState("");
+  
 
   const options = [
     { label: "one", value: "one" },
@@ -23,7 +24,13 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
   ]; //create our options for radio group
   const onPress = async(name) => {
     if (name === "submit") {
-      
+      console.log(newMarker) ;
+      newMarker.number =chosenOption ;  
+      newMarker.comment=details ;  
+      console.log(newMarker) ; 
+     // const response = await addLocation(newLocation) ;
+      //console.log(response) ;
+
       setModalVisible(!modalVisible);
     } else {
       setModalVisible(!modalVisible);
@@ -31,9 +38,7 @@ const LocationDetailsForm = ({ cordinates, hideModel }) => {
 
     hideModel();
   };
-  useEffect(() => {
-    console.log(chosenOption);
-  }, [chosenOption]);
+  
 
   return (
     <Modal

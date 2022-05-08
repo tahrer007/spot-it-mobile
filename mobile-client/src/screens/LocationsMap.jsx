@@ -20,6 +20,7 @@ const LocationsMap = () => {
   const [error, setError] = useState({});
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
+  const [newMarker,setNewMarker]=useState({});
 
   const intialMarks = (dbMarks) => setMarkers(dbMarks);
 
@@ -37,14 +38,17 @@ const LocationsMap = () => {
   const mapPress = (e) => {
     //console.log(e.nativeEvent.coordinate)
 
-    const newLocation = {
+    const marker = {
       lat: e.nativeEvent.coordinate.latitude,
       lng: e.nativeEvent.coordinate.longitude,
-      time: new Date(),
+      //time: new Date(),
     };
-    if (inPolygon(newLocation)) {
+    if (inPolygon(marker)) {
+      marker.time =new Date() ; 
+      
+      setNewMarker(marker);
       setModalVisible(!modalVisible);
-      setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
+      //setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
     }
   };
 
@@ -96,7 +100,7 @@ const LocationsMap = () => {
             ))
           : null}
       </MapView>
-      {modalVisible && <LocationDetailsForm hideModel={hideModel} />}
+      {modalVisible && <LocationDetailsForm hideModel={hideModel} newMarker={newMarker}/>}
     </View>
   );
 };

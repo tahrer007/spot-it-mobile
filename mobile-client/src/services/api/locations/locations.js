@@ -16,10 +16,12 @@ const addLocation = async (newLocation) => {
     console.log(newLocation) ; 
    
     try {
-        const response = await api.post("locations/newLocation");
+        const response = await api.post("locations/newLocation",newLocation);
        console.log(response)
+       return response ; 
       } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
+        return "error"
         
       }
    
