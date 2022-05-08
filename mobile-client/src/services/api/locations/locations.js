@@ -11,7 +11,7 @@ const getAllLocations = async () => {
   }
 };
 
-export { getAllLocations  };
+
 const addLocation = async (newLocation) => {
     console.log(newLocation) ; 
    
@@ -24,4 +24,4 @@ const addLocation = async (newLocation) => {
       }
    
   };
-
+  export { getAllLocations , addLocation };
