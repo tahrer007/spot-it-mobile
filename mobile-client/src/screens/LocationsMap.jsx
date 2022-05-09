@@ -7,6 +7,8 @@ import inPolygon from "../services/inPolygon";
 import LocationDetailsForm from "../components/LocationDetailsForm";
 import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
+import io from "socket.io-client";
+
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -22,8 +24,13 @@ const LocationsMap = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [newMarker,setNewMarker]=useState({});
 
-  const intialMarks = (dbMarks) => setMarkers(dbMarks);
-
+  useEffect(()=>{
+    const socket = io("http://855f-79-183-233-60.ngrok.io:5000");
+    socket.on("chat message", msg => {
+          this.setState({ chatMessages: [...this.state.chatMessages, msg]   
+     });
+  });
+  },[])
   useEffect(async () => {
     setTimeout(async() => {
       const response = await getAllLocations();
@@ -31,6 +38,9 @@ const LocationsMap = () => {
       response?.status === "ok" ? intialMarks(response.data) : setError(response);
     }, 1000);
 
+  const intialMarks = (dbMarks) => setMarkers(dbMarks);
+
+  
    
    
   }, []);
