@@ -18,7 +18,7 @@ const userLocation =()=>{
         },
         error => {
             console.log(error.message.toString())
-          Alert.alert(error.message.toString());
+         return (error.message.toString());
         },
         {
           showLocationDialog: true,
