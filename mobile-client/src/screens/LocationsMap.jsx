@@ -7,6 +7,8 @@ import inPolygon from "../services/inPolygon";
 import LocationDetailsForm from "../components/LocationDetailsForm";
 import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
+import Geolocation from "react-native-geolocation-service";
+
 import io from "socket.io-client";
 
 const initialRegion = {
@@ -72,11 +74,12 @@ const LocationsMap = () => {
         initialRegion={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
-        provider={PROVIDER_GOOGLE}
         rotateEnabled={true}
         onRegionChange={() => setRegion(region)}
         onPress={mapPress}
         mapType={"standard"}
+        provider={PROVIDER_GOOGLE}
+
       >
         {/*<MapView.Polygon
           coordinates={HaifaCoords}
