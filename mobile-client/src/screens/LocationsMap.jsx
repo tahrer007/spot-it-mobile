@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { View, StyleSheet, Dimensions, Image ,Text } from "react-native";
+import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps";
 import HaifaCoords from "../services/haifaCoords";
 import mapStyles from "../styles/mapStyles";
@@ -8,7 +8,6 @@ import LocationDetailsForm from "../components/LocationDetailsForm";
 import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
 import io from "socket.io-client";
-
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -22,27 +21,24 @@ const LocationsMap = () => {
   const [error, setError] = useState({});
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
-  const [newMarker,setNewMarker]=useState({});
+  const [newMarker, setNewMarker] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     const socket = io("http://855f-79-183-233-60.ngrok.io:5000");
-    socket.on("chat message", msg => {
-          this.setState({ chatMessages: [...this.state.chatMessages, msg]   
-     });
-  });
-  },[])
+    socket.on("chat message", (msg) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
+    });
+  }, []);
   useEffect(async () => {
-    setTimeout(async() => {
+    setTimeout(async () => {
       const response = await getAllLocations();
       console.log(response);
-      response?.status === "ok" ? intialMarks(response.data) : setError(response);
+      response?.status === "ok"
+        ? intialMarks(response.data)
+        : setError(response);
     }, 1000);
 
-  const intialMarks = (dbMarks) => setMarkers(dbMarks);
-
-  
-   
-   
+    const intialMarks = (dbMarks) => setMarkers(dbMarks);
   }, []);
 
   const mapPress = (e) => {
@@ -54,8 +50,8 @@ const LocationsMap = () => {
       //time: new Date(),
     };
     if (inPolygon(marker)) {
-      marker.time =new Date() ; 
-      
+      marker.time = new Date();
+
       setNewMarker(marker);
       setModalVisible(!modalVisible);
       //setMarkers((oldMarkers) => [...oldMarkers, newLocation]);
@@ -63,18 +59,21 @@ const LocationsMap = () => {
   };
 
   const hideModel = () => setModalVisible(!modalVisible);
-  const formateDateTime =(dateTime)=> formatRelative(Date.parse(dateTime), new Date()) ; 
+  const formateDateTime = (dateTime) =>
+    formatRelative(Date.parse(dateTime), new Date());
 
   return (
     <View style={styles.container}>
       <MapView
+        showsUserLocation={true}
         showsMyLocationButton={true}
+        showsCompass={true}
         style={styles.map}
         initialRegion={region}
         zoomControlEnabled={true}
         zoomEnabled={true}
         provider={PROVIDER_GOOGLE}
-        showsCompass={true}
+        rotateEnabled={true}
         onRegionChange={() => setRegion(region)}
         onPress={mapPress}
         mapType={"standard"}
@@ -97,20 +96,22 @@ const LocationsMap = () => {
                   longitude: marker.lng,
                 }}
                 title={"Alert"}
-                description={marker.number + " spotted "+formateDateTime(marker.time)}
+                description={
+                  marker.number + " spotted " + formateDateTime(marker.time)
+                }
               >
                 <Image
                   source={require("../../assets/pumbaa.png")}
                   style={styles.markerIcon}
                   resizeMode="contain"
                 />
-                
-          
               </Marker>
             ))
           : null}
       </MapView>
-      {modalVisible && <LocationDetailsForm hideModel={hideModel} newMarker={newMarker}/>}
+      {modalVisible && (
+        <LocationDetailsForm hideModel={hideModel} newMarker={newMarker} />
+      )}
     </View>
   );
 };
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   map: {
-    width: Dimensions.get("window").width,
+    width: (Dimensions.get("window").width * 95) / 100,
     height: (Dimensions.get("window").height * 90) / 100,
   },
   markerIcon: {
