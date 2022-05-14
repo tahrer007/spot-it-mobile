@@ -24,6 +24,7 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
   const [newMarker, setNewMarker] = useState({});
+  const [userLocation,setUserLocation]=useState({});
 
   useEffect(() => {
     const socket = io("http://855f-79-183-233-60.ngrok.io:5000");
