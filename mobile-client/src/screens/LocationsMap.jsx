@@ -8,6 +8,7 @@ import LocationDetailsForm from "../components/LocationDetailsForm";
 import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
 import Geolocation from "react-native-geolocation-service";
+import userGeoLocation from "../services/userGeoLocation" 
 
 import io from "socket.io-client";
 
@@ -24,7 +25,12 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
   const [newMarker, setNewMarker] = useState({});
-  const [userLocation,setUserLocation]=useState({});
+  const [userGeoLocation,setUserGeoLocation]=useState({});
+
+  const getUserLocation =()=>{
+    const userLocation =  userGeoLocation() ; 
+    if(!typeof(userLocation)==="string") setUserGeoLocation(userLocation);
+  }
 
   useEffect(() => {
     const socket = io("http://855f-79-183-233-60.ngrok.io:5000");

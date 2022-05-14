@@ -1,7 +1,7 @@
 import Geolocation from "react-native-geolocation-service";
 
 
-const userLocation =()=>{
+const userGeoLocation =()=>{
     Geolocation.getCurrentPosition(
         position => {
          const test ={
@@ -28,4 +28,4 @@ const userLocation =()=>{
         }
       );
 }
-export default userLocation 
+export default userGeoLocation 
