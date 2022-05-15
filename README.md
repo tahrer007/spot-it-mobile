@@ -5,7 +5,7 @@ in the mean will you can visit spot-it website
 ### Live Link 
  🐗 [spot it](https://spot-it-2022.herokuapp.com/)
 ### Code
-🐗 web](https://github.com/tahrer007/spot-it-web)
+🐗 [web](https://github.com/tahrer007/spot-it-web)
 
 
 
