@@ -40,16 +40,6 @@ connection.once("open", () => {
     switch (change.operationType) {
       case "insert":
         console.log(change.fullDocument)
-        /*const location = {
-
-          _id: change.fullDocument._id,
-          lat: change.fullDocument.lat,
-          lng: change.fullDocument.lng,
-          time: change.fullDocument.time,
-          number: change.fullDocument.number,
-          comment: change.fullDocument.comment,
-        };*/
-
         io.of("/socket").emit("newLocation", change.fullDocument);
         break;
     }
