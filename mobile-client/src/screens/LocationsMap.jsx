@@ -8,9 +8,10 @@ import LocationDetailsForm from "../components/LocationDetailsForm";
 import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
 import Geolocation from "react-native-geolocation-service";
-import userGeoLocation from "../services/userGeoLocation" 
+import userGeoLocation from "../services/userGeoLocation";
 
 import io from "socket.io-client";
+import { set } from "date-fns/esm";
 
 const initialRegion = {
   latitude: 32.794241949530296,
@@ -25,23 +26,24 @@ const LocationsMap = () => {
   const [region, setRegion] = useState(initialRegion);
   const [modalVisible, setModalVisible] = useState(false);
   const [newMarker, setNewMarker] = useState({});
-  const [userGeoLocation,setUserGeoLocation]=useState({});
+  const [userGeoLocation, setUserGeoLocation] = useState({});
 
-  const getUserLocation =()=>{
-    const userLocation =  userGeoLocation() ; 
-    if(!typeof(userLocation)==="string") setUserGeoLocation(userLocation);
-  }
+  const getUserLocation = () => {
+    const userLocation = userGeoLocation();
+    if (!typeof userLocation === "string") setUserGeoLocation(userLocation);
+  };
 
   useEffect(() => {
-    const socket = io("http://855f-79-183-233-60.ngrok.io:5000");
-    socket.on("chat message", (msg) => {
-      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
+    const socket = io("http://215b-109-64-9-153.ngrok.io/socket");
+    socket.on("newLocation", (newMarker) => {
+      console.log(newMarker);
+      setMarkers((prevState )=>[...prevState ,newMarker]);
     });
   }, []);
   useEffect(async () => {
     setTimeout(async () => {
       const response = await getAllLocations();
-      console.log(response);
+      //console.log(response);
       response?.status === "ok"
         ? intialMarks(response.data)
         : setError(response);
@@ -86,7 +88,6 @@ const LocationsMap = () => {
         onPress={mapPress}
         mapType={"standard"}
         provider={PROVIDER_GOOGLE}
-
       >
         {/*<MapView.Polygon
           coordinates={HaifaCoords}

@@ -41,20 +41,21 @@ connection.once("open", () => {
   const thoughtChangeStream = connection.collection("locations").watch();
 
   thoughtChangeStream.on("change", (change) => {
+    console.log(change.operationType) ;
     switch (change.operationType) {
       case "insert":
         const location = {
           _id: change.fullDocument._id,
           lat: change.fullDocument.lat,
-          lng: change.fullDocument.description,
+          lng: change.fullDocument.lng,
           time : change.fullDocument.time,
           number : change.fullDocument.number, 
           comment : change.fullDocument.comment,
         };
 
-        console.log(change) ;
+        console.log(location) ;
 
-        io.of("/api/socket").emit("newLocation", location);
+        io.of("/socket").emit("newLocation", location);
         break;
 
       /*case "delete":
