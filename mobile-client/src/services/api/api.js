@@ -1,5 +1,7 @@
-import api from "axios";
-
-export default api.create({
-  baseURL: "http://215b-109-64-9-153.ngrok.io",
+import axios from "axios";
+const myUrl = `https://spot-it-server.herokuapp.com/`;
+const myApi = axios.create({
+  baseURL: myUrl,
 });
+
+export  {myApi,myUrl};
