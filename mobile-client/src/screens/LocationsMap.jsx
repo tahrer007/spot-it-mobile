@@ -9,6 +9,7 @@ import { getAllLocations } from "../services/api/locations/locations";
 import { formatRelative } from "date-fns";
 import Geolocation from "react-native-geolocation-service";
 import userGeoLocation from "../services/userGeoLocation";
+import {myUrl} from "../services/api/api"
 
 import io from "socket.io-client";
 import { set } from "date-fns/esm";
@@ -34,7 +35,7 @@ const LocationsMap = () => {
   };
 
   useEffect(() => {
-    const socket = io("http://215b-109-64-9-153.ngrok.io/socket");
+    const socket = io(myUrl);
     socket.on("newLocation", (newMarker) => {
       console.log(newMarker);
       setMarkers((prevState )=>[...prevState ,newMarker]);
